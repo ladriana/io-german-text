@@ -9,29 +9,34 @@ public class Main {
     public static void main(String[] args) {
 
         try (
-            Reader r = new FileReader(TEXT_FILE_PATH);
-            Writer w = new FileWriter(OUT_TEXT_FILE_PATH)) {
+                Reader r = new FileReader(TEXT_FILE_PATH);
+                Writer w = new FileWriter(OUT_TEXT_FILE_PATH)) {
             int c;
-            while ((c= r.read()) != -1) {
+            while ((c = r.read()) != -1) {
                 if (c == 'ß') {
                     c = 's';
+                    w.write('s');
                 }
                 if (c == 'ä') {
-                    c = 'a'+'e';
+                    c = 'e';
+                    w.write('a');
+
                 }
                 if (c == 'ö') {
-                    c = 'o';
+                    c = 'e';
+                    w.write('o');
+
                 }
                 if (c == 'ü') {
-                    c = 'u';
+                    c = 'e';
+                    w.write('u');
+
                 }
                 w.write(c);
             }
 
-        } catch (FileNotFoundException e) {
-            System.out.println("The file was not found");
         } catch (IOException e) {
-            System.out.println("Something went wrong!");
+            System.err.println("Something went wrong!");
         }
 
     }
